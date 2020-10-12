@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class ApplicationContextConfig {
     @Bean
-    @LoadBalanced //根据服务名查找服务实例，并负载均衡调用（Ribbon）,服务的发现与负载均衡
+    // @LoadBalanced //根据服务名查找服务实例，并负载均衡调用,服务的发现与负载均衡
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
