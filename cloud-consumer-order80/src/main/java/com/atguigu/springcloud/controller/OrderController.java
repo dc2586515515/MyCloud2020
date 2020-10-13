@@ -32,7 +32,6 @@ public class OrderController {
 
     @Resource
     private LoadBalancer loadBalancer;
-
     @Resource
     private DiscoveryClient discoveryClient;
 
@@ -101,6 +100,7 @@ public class OrderController {
         }
         ServiceInstance serviceInstance = loadBalancer.instances(instances);
         URI uri = serviceInstance.getUri();
+        System.out.println("URI：" + uri);
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
     }
 

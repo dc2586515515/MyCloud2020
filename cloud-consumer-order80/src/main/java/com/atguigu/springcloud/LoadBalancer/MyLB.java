@@ -9,15 +9,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @Description
  * @Author DC
- * @Date 2020-10-12
+ * @Date 2020-10-13
  */
 @Component
 public class MyLB implements LoadBalancer {
 
-    private AtomicInteger atomicInteger = new AtomicInteger();
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
 
     /**
-     * 服务实例坐标
+     * final修饰，集成也不可修改
      *
      * @return
      */
@@ -27,14 +27,17 @@ public class MyLB implements LoadBalancer {
         do {
             current = atomicInteger.get();
             next = current >= 2147483647 ? 0 : current + 1;
-        } while (!this.atomicInteger.compareAndSet(current, next)); //第一个参数是期望值，第二个参数是修改值是
+        }
+        //采用CAS锁自旋的方式，如果当前current与预期的一致，则更新，如果current被其他线程改变了，
+        // 不等与之前之前取得预期值，则重新进行循环，直到current等于上一步取得预期值为止，即，自旋锁（轻量级锁）
+        while (!this.atomicInteger.compareAndSet(current, next));
         System.out.println("*******第几次访问，次数next: " + next);
         return next;
     }
 
     @Override
-    public ServiceInstance instances(List<ServiceInstance> serviceInstances) { // 得到服务实例列表
-        int index = getAndIncrement() % serviceInstances.size(); // 获得服务实例列表下标
-        return serviceInstances.get(index); // 返回选择的服务实例
+    public ServiceInstance instances(List<ServiceInstance> serviceInstances) {
+        int index = getAndIncrement() % serviceInstances.size();
+        return serviceInstances.get(index);
     }
 }

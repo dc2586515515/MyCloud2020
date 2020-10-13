@@ -7,10 +7,9 @@ import java.util.List;
 /**
  * @Description
  * @Author DC
- * @Date 2020-10-12
+ * @Date 2020-10-13
  */
 public interface LoadBalancer {
-    // 获取所有可用的服务实例列表
+    //收集服务器总共有多少台能够提供服务的机器，并放到list里面
     ServiceInstance instances(List<ServiceInstance> serviceInstances);
-
 }

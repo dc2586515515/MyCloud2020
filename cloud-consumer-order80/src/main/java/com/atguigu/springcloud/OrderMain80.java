@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 @SpringBootApplication
 @EnableEurekaClient
 // 修改默认负载均衡规则为随机
-@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+// @RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
 public class OrderMain80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderMain80.class, args);
