@@ -13,4 +13,12 @@ public interface PaymentFeignService {
 
     @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id);
+
+    /**
+     * feign客户端默认只等待1s，但是有时被调用的服务端处理时间超过1秒，Feign客户端不会继续等待
+     * 直接返回报错，所以需要在yml中设置超时控制
+     * @return
+     */
+    @GetMapping(value = "/payment/feign/timeout")
+    public String paymentFeignTimeout();
 }

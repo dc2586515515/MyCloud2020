@@ -18,4 +18,13 @@ public class OrderFeignController {
        return paymentFeignService.getPaymentById(id);
     }
 
+    /**
+     * 调用暂停方法
+     * @return
+     */
+    @GetMapping(value = "/consumer/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+        return paymentFeignService.paymentFeignTimeout();
+    }
+
 }
