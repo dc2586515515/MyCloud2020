@@ -9,3 +9,8 @@ eureka:
 ribbon:
   ReadTimeout:  5000
   ConnectTimeout: 5000
+
+# 开启feign日志打印客户端
+logging:
+  level:
+    com.atguigu.springcloud.service.PaymentFeignService: debug
