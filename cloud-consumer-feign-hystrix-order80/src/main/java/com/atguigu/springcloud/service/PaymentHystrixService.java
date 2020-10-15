@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 @FeignClient(value = "cloud-provider-hystrix-payment")
 public interface PaymentHystrixService {
+
     @GetMapping("/payment/hystrix/ok/{id}")
     public String paymentInfo_OK(@PathVariable("id") Integer id);
 
