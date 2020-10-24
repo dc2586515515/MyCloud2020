@@ -27,7 +27,7 @@ spring:
 #            - Header=X-Request-Id, \d+ # 如果请求具有名为X-Request-Id其值与\d+正则表达式匹配的标头（即，其值为一个或多个数字），则此路由匹配。 curl http://localhost:9527/payment/lb -H "X-Request-Id:12"测试
 #            - Host=**.atguigu.com
 #            - Method=GET
-            - Query=username, \d+ #要有参数名称并且是正整数才能路由
+#            - Query=username, \d+ #要有参数名称并且是正整数才能路由
 
 
 
