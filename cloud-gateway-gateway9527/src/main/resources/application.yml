@@ -14,12 +14,24 @@ spring:
           uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/get/**   #断言,路径相匹配的进行路由
+            - After=2020-10-24T09:53:30.456+08:00[Asia/Shanghai] # 断言，时间在指定时间之后进行路由
 
         - id: payment_routh2
 #          uri: http://localhost:8001
           uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/lb/**   #断言,路径相匹配的进行路由
+#            - Before=2020-10-24T10:05:30.456+08:00[Asia/Shanghai] # 断言，时间在指定时间之前进行路由
+#            - Between=2020-10-24T10:15:30.456+08:00[Asia/Shanghai],2020-10-24T10:20:30.456+08:00[Asia/Shanghai] # 断言，时间在指定时间范围之内进行路由
+#            - Cookie=userName,dc # cmd 访问 curl http://localhost:9527/payment/lb --cookie "userName=dc"测试
+#            - Header=X-Request-Id, \d+ # 如果请求具有名为X-Request-Id其值与\d+正则表达式匹配的标头（即，其值为一个或多个数字），则此路由匹配。 curl http://localhost:9527/payment/lb -H "X-Request-Id:12"测试
+#            - Host=**.atguigu.com
+#            - Method=GET
+            - Query=username, \d+ #要有参数名称并且是正整数才能路由
+
+
+
+
 
 
 eureka:
