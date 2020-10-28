@@ -58,13 +58,14 @@ public class PaymentController {
 
     /**
      * 服务发现
+     *
      * @return
      */
     @GetMapping("/payment/discovery")
-    public Object discovery(){
+    public Object discovery() {
         List<String> services = discoveryClient.getServices();
         for (String element : services) {
-            log.info("************element：" +  element);
+            log.info("************element：" + element);
         }
 
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
@@ -76,21 +77,32 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/payment/lb")
-    public String getPaymentLB(){
+    public String getPaymentLB() {
         return serverPort;
     }
 
     /**
      * 模拟暂停
+     *
      * @return
      */
     @GetMapping(value = "/payment/feign/timeout")
-    public String paymentFeignTimeout(){
+    public String paymentFeignTimeout() {
         try {
             TimeUnit.SECONDS.sleep(3);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return serverPort;
+    }
+
+    /**
+     * 测试sleuth和zipkin
+     *
+     * @return
+     */
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return "hi ,i'am paymentzipkin server fall back，welcome to atguigu，O(∩_∩)O哈哈~";
     }
 }
