@@ -8,14 +8,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 172.10.8.101:8848 #服务注册中心地址
+#        server-addr: 172.10.8.101:8848 #服务注册中心地址
+        server-addr: 172.10.8.101:1111  #访问nginx，负载均衡访问nacos
       config:
-        server-addr: 172.10.8.101:8848 #配置中心地址
+#        server-addr: 172.10.8.101:8848 #配置中心地址
+        server-addr: 172.10.8.101:1111  #访问nginx，负载均衡访问nacos
         file-extension: yaml #指定yaml格式的配置
 #        group: TEST_GROUP # 测试组
-        group: DEV_GROUP # 开发组
+#        group: DEV_GROUP # 开发组
         #命名空间
 #        namespace: 2ac0d7a6-e957-4bd1-b67c-71852f852fbe  # dev 命名空间ID
-        namespace: a19e48b2-6301-4b5c-823f-1c0775536857 # test 命名空间ID
+#        namespace: a19e48b2-6301-4b5c-823f-1c0775536857 # test 命名空间ID
 
 # nacos-config-client-dev.yaml
