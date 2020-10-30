@@ -3,7 +3,8 @@ server:
 
 spring:
   application:
-    name: nacos-config-client
+#    name: nacos-config-client
+    name: nacos-order #切换命名空间
   cloud:
     nacos:
       discovery:
@@ -13,5 +14,8 @@ spring:
         file-extension: yaml #指定yaml格式的配置
 #        group: TEST_GROUP # 测试组
         group: DEV_GROUP # 开发组
+        #命名空间
+#        namespace: 2ac0d7a6-e957-4bd1-b67c-71852f852fbe  # dev 命名空间ID
+        namespace: a19e48b2-6301-4b5c-823f-1c0775536857 # test 命名空间ID
 
 # nacos-config-client-dev.yaml
