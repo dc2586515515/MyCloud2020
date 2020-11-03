@@ -26,7 +26,7 @@ public class FlowLimitController {
 
 
     /**
-     * sentinel降级测试
+     * sentinel降级测试——RT
      *
      * @return
      */
@@ -38,8 +38,32 @@ public class FlowLimitController {
             e.printStackTrace();
         }
         log.info("testD 测试RT");
-
         return "------testD";
     }
+
+    /**
+     * sentinel降级测试——异常比例
+     * @return
+     */
+    @GetMapping("/testE")
+    public String testE()
+    {
+        log.info("testD 测试RT");
+        int age = 10/0;
+        return "------testE";
+    }
+
+    /**
+     * sentinel降级测试——异常数
+     * @return
+     */
+    @GetMapping("/testF")
+    public String testF()
+    {
+        log.info("testE 测试异常数");
+        int age = 10/0;
+        return "------testE 测试异常数";
+    }
+
 
 }
