@@ -80,12 +80,14 @@ public class FlowLimitController {
      * @return
      */
     @GetMapping("/testHotKey")
-    @SentinelResource(value = "testHotKey", blockHandler = "deal_testHotKey")
+    // @SentinelResource(value = "testHotKey") // 默认fallBack
+    @SentinelResource(value = "testHotKey", blockHandler = "deal_testHotKey") // 指定fallBack
     public String testHotKey(@RequestParam(value = "p1", required = false) String p1,
                              @RequestParam(value = "p2", required = false) String p2) {
         //int age = 10/0;
         return "------testHotKey";
     }
+
 
     /**
      * 兜底方法
